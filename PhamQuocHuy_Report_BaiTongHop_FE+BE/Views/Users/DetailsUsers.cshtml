@@ -1,0 +1,80 @@
+﻿@model PhamQuocHuy_Report_BaiTongHop_FE_BE.Models.Users
+
+@{
+    ViewData["Title"] = "Chi tiết người dùng";
+}
+<!-- Bootstrap Icons CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/dist/font/bootstrap-icons.min.css" integrity="sha384-yk4j77b98eH5Ff0pR7Y/I5L33b/Ro1GvfF56obFKNZUsQyS/Z4XI0V8yG0Izf6P2" crossorigin="anonymous">
+<div class="page-header page-header-light border border-bottom-primary rounded-top mb-3">
+								<div class="page-header-content">
+								<div class="page-title">
+										<h5 class="mb-0">Hệ thống quản lý tài khoản</h5>
+									</div>
+								</div>
+								<div class="page-header-content border-top">
+    <div class="breadcrumb">
+        <a href="/Users/List" class="breadcrumb-item py-2">Danh sách</a>
+        <a href="/AccountDetails/@Model.Id" class="breadcrumb-item py-2">Chi tiết tài khoản</a>
+        <span class="breadcrumb-item active py-2">ID: @Model.Id</span>
+    </div>
+</div>
+
+							</div>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h4><i class="fas fa-user"></i> Thông tin người dùng</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">
+                    <i class="fas fa-id-badge"></i> ID người dùng
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Id)
+                </dd>
+                <dt class="col-sm-3">
+                    <i class="fas fa-user-tie"></i> Tên tài khoản
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.username)
+                </dd>
+                <dt class="col-sm-3">
+                    <i class="fas fa-user"></i> Họ và tên
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.hoVaTen)
+                </dd>
+                <dt class="col-sm-3">
+                    <i class="fas fa-phone"></i> Số điện thoại
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.soDienThoai)
+                </dd>
+                <dt class="col-sm-3">
+                    <i class="fas fa-genderless"></i> Giới tính
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.gioiTinh)
+                </dd>
+                <dt class="col-sm-3">
+                    <i class="fas fa-calendar-alt"></i> Ngày sinh
+                </dt>
+                <dd class="col-sm-9">
+                    @Model.ngaySinh.ToString("dd/MM/yyyy")
+                </dd>
+                <dt class="col-sm-3">
+                    <i class="fas fa-map-marker-alt"></i> Tỉnh thành
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.tinhThanh)
+                </dd>
+            </dl>
+        </div>
+        <div class="card-footer text-right">
+            @Html.ActionLink("Cập nhật tài khoản", "UpdateAccount", new { id = Model.Id }, new { @class = "btn btn-warning" })
+            <a asp-action="List" class="btn btn-secondary"><i class="fas fa-arrow-left"></i> Quay lại danh sách</a>
+        </div>
+    </div>
+</div>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>

@@ -1,0 +1,170 @@
+﻿@model PhamQuocHuy_Report_BaiTongHop_FE_BE.Models.Users
+<style>
+.btn-flat-primary {
+    background-color: transparent;
+    color: #007bff;
+    border: 1px solid #007bff;
+}
+
+.btn-flat-secondary {
+    background-color: transparent;
+    color: #6c757d;
+    border: 1px solid #6c757d;
+}
+.btn-lg {
+    padding: 0.75rem 1.25rem;
+    font-size: 1.25rem;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+}
+
+.btn-labeled {
+    display: flex;
+    align-items: center;
+}
+
+.btn-labeled .btn-label {
+    margin-right: 0.5rem;
+}
+
+.btn-labeled-end .btn-label {
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
+.btn-labeled-start .btn-label {
+    margin-left: 0;
+    margin-right: 0.5rem;
+}
+.btn-flat-primary:hover,
+.btn-flat-secondary:hover {
+    opacity: 0.8;
+}
+</style>
+<div class="page-header page-header-light border border-bottom-primary rounded-top mb-3">
+								<div class="page-header-content">
+                                    <div class="page-title">
+                                        <h5 class="mb-0">Hệ thống quản lý tài khoản</h5>
+                                    </div>
+								</div>
+                              
+								<div class="page-header-content border-top">
+									<div class="breadcrumb">
+										<a href="List" class="breadcrumb-item py-2">Danh sách</a>
+										<span class="breadcrumb-item active py-2">Tạo tài khoản</span>
+									</div>
+								</div>
+							</div>
+@if (ViewBag.Message != null)
+{
+       <div class="alert bg-success text-white alert-icon-start alert-dismissible fade show border-0">
+                                                <span class="alert-icon bg-black bg-opacity-20">
+                                                    <i class="ph-check-circle"></i>
+                                                </span>
+                                                <span class="fw-semibold">Tuyệt!</span> @ViewBag.Message
+                                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+                                            </div>
+}
+@if (ViewBag.Error != null)
+{
+         <div class="alert bg-danger text-white alert-icon-start alert-dismissible fade show border-0">
+											<span class="alert-icon bg-black bg-opacity-20">
+												<i class="ph-x-circle"></i>
+											</span>
+											<span class="fw-semibold">Lỗi:</span> @ViewBag.Error
+											<button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+						 </div>
+}
+<div class="card">
+    <div class="card-header">
+        <p class="fw-bolder">Tạo tài khoản</p>
+    </div>
+    <div class="card-body">
+        <form asp-action="CreateAccount" asp-controller="Users" method="post">
+            <div class="row">
+                <div class="col-lg-6 mb-3">
+                    <div class="form-floating">
+                        <input asp-for="hoVaTen" class="form-control" placeholder="Nhập họ và tên" />
+                        <label>Họ và tên</label>
+                        <span asp-validation-for="hoVaTen" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-3">
+                    <div class="form-floating">
+                        <input asp-for="soDienThoai" class="form-control" placeholder="Nhập số điện thoại" />
+                        <label>Số điện thoại</label>
+                        <span asp-validation-for="soDienThoai" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 mb-3">
+                <div class="form-floating">
+                    <input asp-for="ngaySinh" type="date" class="form-control" />
+                    <label>Ngày sinh</label>
+                    <span asp-validation-for="ngaySinh" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-lg-12 mb-3">
+                <div class="form-floating">
+                    <select asp-for="gioiTinh" class="form-select">
+                        <option value="">Chọn giới tính</option>
+                        <option value="Nam">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                        <option value="Khác">Khác</option>
+                    </select>
+                    <label>Giới tính</label>
+                    <span asp-validation-for="gioiTinh" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-lg-12 mb-3">
+                <div class="form-floating">
+                    <select asp-for="tinhThanh" class="form-select">
+                        <option value="">Chọn tỉnh/thành phố</option>
+                        <option value="An Giang">An Giang</option>
+                        <option value="Cần Thơ">Cần Thơ</option>
+                        <option value="TPHCM">Thành phố Hồ Chí Minh</option>
+                    </select>
+                    <label>Tỉnh/Thành phố</label>
+                    <span asp-validation-for="tinhThanh" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="col-lg-12 mb-3">
+                <div class="form-floating">
+                    <input asp-for="username" class="form-control" placeholder="Nhập tên tài khoản" />
+                    <label>Tên tài khoản</label>
+                    <span asp-validation-for="username" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 mb-3">
+                    <div class="form-floating">
+                        <input asp-for="password" type="text" class="form-control" placeholder="Nhập mật khẩu" />
+                        <label >Mật khẩu</label>
+                        <span asp-validation-for="password" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-3">
+                    <div class="form-floating">
+                        <input asp-for="repass" type="password" class="form-control" placeholder="Nhập lại mật khẩu" />
+                        <label for="repass">Nhập lại mật khẩu</label>
+                        <span class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+          <div class="col-lg-12 mb-3 d-flex justify-content-end">
+    <button class="btn btn-flat-primary btn-lg btn-labeled btn-labeled-start" type="submit">
+        <span class="btn-label">✓</span> Đăng ký
+    </button>
+</div>
+
+        </form>
+    </div>
+</div>

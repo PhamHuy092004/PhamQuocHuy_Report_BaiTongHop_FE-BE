@@ -1,0 +1,83 @@
+﻿@model IEnumerable<PhamQuocHuy_Report_BaiTongHop_FE_BE.Models.Users>
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert bg-success text-white alert-icon-start alert-dismissible fade show border-0" role="alert">
+        <span class="alert-icon bg-black bg-opacity-20">
+            <i class="ph-check-circle"></i>
+        </span>
+        <span class="fw-semibold">Thành công!</span> @TempData["Message"]
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert bg-danger text-white alert-icon-start alert-dismissible fade show border-0" role="alert">
+        <span class="alert-icon bg-black bg-opacity-20">
+            <i class="ph-x-circle"></i>
+        </span>
+        <span class="fw-semibold">Lỗi:</span> @TempData["Error"]
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+<div class="container">
+    <div class="page-header page-header-light border border-bottom-primary rounded-top mb-3">
+								<div class="page-header-content">
+                                    <div class="page-title">
+                                        <h5 class="mb-0">Hệ thống quản lý tài khoản</h5>
+                                    </div>
+								</div>
+                              
+								<div class="page-header-content border-top">
+									<div class="breadcrumb">
+									
+										<span class="breadcrumb-item active py-2">Danh sách tài khoản</span>
+									</div>
+								</div>
+							</div>
+</div>
+<div action="container">
+    <div class="card mt-4" style="margin-top:50px;">
+    <div class="card-header">
+        <p class="fw-bolder">Danh sách người dùng</p>
+        <a class="btn btn-outline-purple my-1 me-2" href="CreateAccount">Thêm người dùng</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive table-scrollable border-top">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên tài khoản</th>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                        @foreach (var user in Model)
+                        {
+                            <tr>
+                                <td>@user.Id</td>
+                                <td>@user.username</td>
+                                <td>
+                                    <a asp-controller="Users" asp-action="DetailsUsers" asp-route-id="@user.Id">Chi tiết</a>
+                                </td>
+                                <td>
+                                    @if (user.username != "AdminHuy")
+                                    {
+                                            <form asp-action="DeleteUser" asp-controller="Users" method="post" onsubmit="return confirm('Bạn có chắc chắn muốn xóa người dùng này không?');">
+                                                <input type="hidden" name="id" value="@user.Id" />
+                                                <button type="submit" class="btn btn-danger">Xóa người dùng</button>
+                                            </form>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</div>

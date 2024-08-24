@@ -1,0 +1,92 @@
+﻿@{
+    ViewBag.Title = "Đăng nhập";
+}
+
+<div class="container mt-5">
+    <div class="row">
+       
+        <div class="col-md-6 offset-md-3">
+            <div class="card mb-4">
+                <div class="card-header bg-dark text-white">
+                    <h2>Đăng nhập</h2>
+                    
+                </div>
+                <div class="card-body">
+                    @if (ViewBag.Error != null)
+                    {
+                           <div class="alert bg-danger text-white alert-icon-start alert-dismissible fade show border-0">
+											<span class="alert-icon bg-black bg-opacity-20">
+												<i class="ph-x-circle"></i>
+											</span>
+											<span class="fw-semibold">Lỗi:</span> @ViewBag.Error
+											<button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+						 </div>
+
+                    }
+                    @if (TempData["Message"] != null)
+{
+    
+                           <div class="alert bg-danger text-white alert-icon-start alert-dismissible fade show border-0">
+											<span class="alert-icon bg-black bg-opacity-20">
+												<i class="ph-x-circle"></i>
+											</span>
+											<span class="fw-semibold">Lỗi:</span> @TempData["Message"]
+											<button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+						 </div>
+}
+                    <form asp-action="Login" method="post">
+                        <div class="form-floating">
+											  <input type="text" id="username" name="Username" class="form-control" />
+											 <label for="username">Tên người dùng</label>
+										</div>
+                        <div class="form-floating mt-3">
+										
+                            <input type="password" id="password" name="Password" class="form-control" />
+                             <label for="password">Mật khẩu</label>
+										</div>
+                        <button type="submit" class="btn btn-outline-info my-1 me-2">Đăng nhập</button>
+                    </form>
+
+                  
+                </div>
+            </div>
+
+            <!-- Card cho form Xác thực Token -->
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h2>Xác thực Token</h2>
+                </div>
+                <div class="card-body">
+                    @if (ViewBag.Message != null)
+                    {
+                            <div class="alert bg-success text-white alert-icon-start alert-dismissible fade show border-0">
+                                                <span class="alert-icon bg-black bg-opacity-20">
+                                                    <i class="ph-check-circle"></i>
+                                                </span>
+                                                <span class="fw-semibold">Tuyệt!</span> @ViewBag.Message
+                                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+                                            </div>
+                    }
+                     @if (ViewBag.ValidationMessage != null)    
+                    {
+                                <div class="alert bg-danger text-white alert-icon-start alert-dismissible fade show border-0">
+                                                <span class="alert-icon bg-black bg-opacity-20">
+                                                    <i class="ph-check-circle"></i>
+                                                </span>
+                                                <span class="fw-semibold">Lỗi!</span> @ViewBag.ValidationMessage
+                                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert"></button>
+                                            </div>
+                    }
+                    <form asp-action="ValidateToken" method="post">
+                        <div class="form-floating">
+		
+                            <input type="text" id="token" name="token" class="form-control" value="@ViewBag.Token" />
+                            								  <label for="token">Token JWT</label>
+										</div>
+                        <button type="submit" class="btn btn-outline-info my-1 me-2">Xác thực Token</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

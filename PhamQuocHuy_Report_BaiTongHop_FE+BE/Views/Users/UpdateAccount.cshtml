@@ -1,0 +1,128 @@
+﻿@model PhamQuocHuy_Report_BaiTongHop_FE_BE.Models.Users
+
+@{
+    ViewData["Title"] = "Cập Nhật Tài Khoản";
+}
+<style>
+    .btn-custom {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: #45a049;
+}
+</style>
+<div class="container">
+     <div class="page-header page-header-light border border-bottom-primary rounded-top mb-3">
+								<div class="page-header-content">
+								<div class="page-title">
+										<h5 class="mb-0">Hệ thống quản lý tài khoản</h5>
+									</div>
+								</div>
+								<div class="page-header-content border-top">
+    <div class="breadcrumb">
+        <a href="/Users/List" class="breadcrumb-item py-2">Danh sách</a>
+        <a href="/Users/DetailsUsers/@Model.Id" class="breadcrumb-item py-2">Chi tiết tài khoản</a>
+        <span class="breadcrumb-item active py-2">Cập nhật tài khoản ID: @Model.Id</span>
+    </div>
+</div>
+</div>
+<div class="container mt-5">
+   
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            <h4><i class="bi bi-pencil-square"></i> Cập Nhật Tài Khoản</h4>
+        </div>
+        <div class="card-body">
+            @if (ViewBag.Success != null)
+            {
+                <div class="alert alert-info mt-3">@ViewBag.Success</div>
+            }
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger mt-3">@ViewBag.Error</div>
+            }
+
+            <h4><i class="bi bi-info-circle"></i> Thông tin Người Dùng</h4>
+            <hr />
+            <form asp-action="UpdateAccount" asp-controller="Users" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Id" class="control-label"><i class="bi bi-id-badge"></i> ID</label>
+                    <input asp-for="Id" class="form-control" readonly />
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="username" class="control-label"><i class="bi bi-person"></i> Tên Đăng Nhập</label>
+                    <input asp-for="username" readonly class="form-control" />
+                    <span asp-validation-for="username" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="password" class="control-label"><i class="bi bi-lock"></i> Mật Khẩu</label>
+                    <input asp-for="password" type="text" class="form-control" />
+                    <span asp-validation-for="password" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="hoVaTen" class="control-label"><i class="bi bi-person-badge"></i> Họ và Tên</label>
+                    <input asp-for="hoVaTen" class="form-control" />
+                    <span asp-validation-for="hoVaTen" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="soDienThoai" class="control-label"><i class="bi bi-phone"></i> Số Điện Thoại</label>
+                    <input asp-for="soDienThoai" class="form-control" />
+                    <span asp-validation-for="soDienThoai" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="gioiTinh" class="control-label"><i class="bi bi-gender-ambiguous"></i> Giới Tính</label>
+                    <select asp-for="gioiTinh" class="form-control">
+                        <option value="Nam">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                        <option value="Khác">Khác</option>
+                    </select>
+                    <span asp-validation-for="gioiTinh" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ngaySinh" class="control-label"><i class="bi bi-calendar-date"></i> Ngày Sinh</label>
+                    <input asp-for="ngaySinh" type="date" class="form-control" />
+                    <span asp-validation-for="ngaySinh" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="tinhThanh" class="control-label"><i class="bi bi-geo-alt"></i> Tỉnh/Thành</label>
+                    <input asp-for="tinhThanh" class="form-control" />
+                    <span asp-validation-for="tinhThanh" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input asp-for="repass" value="non-curry" hidden readonly class="form-control" />
+                </div>
+
+                          <div class="form-group">
+                <input type="submit" value="Lưu Thay Đổi" class="btn-custom" />
+            </div>
+
+            </form>
+        </div>
+        <div class="card-footer text-right">
+            <a asp-action="List" asp-controller="Users" class="btn btn-secondary"><i class="bi bi-arrow-left"></i> Quay lại danh sách</a>
+        </div>
+    </div>
+</div>
